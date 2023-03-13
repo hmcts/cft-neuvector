@@ -18,17 +18,33 @@ resources:
     endpoint: 'hmcts (1)'
 
 variables:
+  terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
   terraformVersion: 0.14.5
+  globalTfCommandOptions: -parallelism=1
   timeoutInMinutes: 60
-  agentPool: 'ubuntu-18.04'
+  agentPool: 'ubuntu-latest'
   build: $(Build.BuildNumber)
   isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  connectedServiceName: DCD-CFT-Sandbox
   keyVaultName: infra-vault-sandbox
   secretsFilter: azure-devops-token
   project: application
+  product: cft-neuvector
+  template: vars/input-variables.yaml@cnp-azuredevops-libraries
+
 
 parameters:
+  - name: overrideAction
+    type: string
+    default: plan
+    values:
+      - plan
+      - apply
+      - destroy
+      
+  - name: kvConnectedServiceName
+    type: string
+    default: DCD-CFT-Sandbox
+
   - name: environments
     displayName: Environment to run
     type: object
@@ -66,14 +82,13 @@ parameters:
 stages:
   - stage: Precheck
     jobs:
-      - template: ./steps/terraform-precheck.yaml@cnp-azuredevops-libraries
+      - template: steps/terraform-precheck.yaml@cnp-azuredevops-libraries
         parameters:
-          agentPool: ${{ variables.agentPool }}
-          timeoutInMinutes: ${{ variables.timeoutInMinutes}}
-          terraformVersion: ${{ variables.terraformVersion}}
-          connectedServiceName: ${{ variables.connectedServiceName }}
-          keyVaultName: ${{ variables.keyVaultName }}
-          secretsFilter: ${{ variables.secretsFilter }}
+          keyvaultName: ${{ variables.keyVaultName }}
+          keyvaultSecret: ${{ variables.secretsFilter }}
+          serviceConnection: ${{ parameters.kvConnectedServiceName }}
+          overrideAction: ${{ parameters.overrideAction }}
+
 
   - ${{ each parameter in parameters.environments }}:
     - stage: ${{ parameter.environment }}
@@ -84,11 +99,15 @@ stages:
           pool:
             vmImage: ${{ variables.agentPool }}
           steps:
-            - template: ./steps/terraform.yaml@cnp-azuredevops-libraries
+            - template: steps/terraform.yaml@cnp-azuredevops-libraries
               parameters:
+                overrideAction: ${{ parameters.overrideAction }}
                 environment: ${{ parameter.environment }}
-                location: ${{ parameters.location }}
-                stack: ${{ parameter.deployment }}
-                project: ${{ variables.project }}
-                tfversion: ${{ variables.terraformVersion}}
+                component: ${{ parameter.component }}
+                kvConnectedServiceName: ${{ parameters.kvConnectedServiceName }}
                 serviceConnection: "OPS-APPROVAL-GATE-${{ upper(parameter.environment) }}-ENVS"
+                terraformInitSubscription: ${{ variables.terraformInitSubscription }}
+                product: ${{ variables.product }}
+                planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                applyCommandOptions: ${{ variables.globalTfCommandOptions }}
+                destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
