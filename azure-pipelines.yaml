@@ -122,6 +122,7 @@ stages:
           steps:
             - template: "steps/terraform.yaml@cnp-azuredevops-libraries"
               parameters:
+                tfVarsFile: NULL
                 overrideAction: ${{ parameters.overrideAction }}
                 environment: ${{ parameter.environment }}
                 component: ${{ parameter.component }}
