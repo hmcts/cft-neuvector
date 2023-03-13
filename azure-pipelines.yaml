@@ -15,7 +15,7 @@ resources:
     type: github
     ref: refs/heads/master
     name: hmcts/cnp-azuredevops-libraries
-    endpoint: 'hmcts'
+    endpoint: 'hmcts (1)'
 
 variables:
   terraformVersion: 0.14.5
