@@ -96,12 +96,18 @@ parameters:
 stages:
   - stage: Precheck
     jobs:
-      - template: "steps/terraform-precheck.yaml@cnp-azuredevops-libraries"
-        parameters:
-          keyvaultName: ${{ variables.keyVaultName }}
-          keyvaultSecret: ${{ variables.secretsFilter }}
-          serviceConnection: ${{ parameters.kvConnectedServiceName }}
-          overrideAction: ${{ parameters.overrideAction }}
+      - job:
+        displayName: Precheck
+        pool:
+          vmImage: ${{ variables.agentPool }}
+        timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+        steps:
+          - template: steps/terraform-precheck.yaml@cnp-azuredevops-libraries
+            parameters:
+              keyvaultName: ${{ variables.keyVaultName }}
+              keyvaultSecret: ${{ variables.secretsFilter }}
+              serviceConnection: ${{ parameters.kvConnectedServiceName }}
+              overrideAction: ${{ parameters.overrideAction }}
 
 
   - ${{ each parameter in parameters.environments }}:
@@ -112,6 +118,7 @@ stages:
         - job:
           pool:
             vmImage: ${{ variables.agentPool }}
+          timeoutInMinutes: ${{ variables.timeoutInMinutes }}
           steps:
             - template: "steps/terraform.yaml@cnp-azuredevops-libraries"
               parameters:
