@@ -40,7 +40,7 @@ parameters:
       - plan
       - apply
       - destroy
-      
+
   - name: kvConnectedServiceName
     type: string
     default: DCD-CFT-Sandbox
@@ -52,24 +52,38 @@ parameters:
       - deployment: 'neuvector'
         environment: 'stg'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-stg
       - deployment: 'neuvector'
         environment: 'test'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-test
       - deployment: 'neuvector'
         environment: 'sbox'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-sbox
       - deployment: 'neuvector'
         environment: 'demo'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-demo
       - deployment: 'neuvector'
         environment: 'dev'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-dev
       - deployment: 'neuvector'
         environment: 'ithc'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-ithc
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: dcd-cftapps-prod
 
   - name: location
     displayName: Location
@@ -105,7 +119,7 @@ stages:
                 environment: ${{ parameter.environment }}
                 component: ${{ parameter.component }}
                 kvConnectedServiceName: ${{ parameters.kvConnectedServiceName }}
-                serviceConnection: "OPS-APPROVAL-GATE-${{ upper(parameter.environment) }}-ENVS"
+                serviceConnection: ${{ parameter.service_connection }}
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
                 planCommandOptions: ${{ variables.globalTfCommandOptions }}
