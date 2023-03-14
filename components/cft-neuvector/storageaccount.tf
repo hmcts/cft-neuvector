@@ -6,12 +6,12 @@ module "ctags" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "cft-${var.product}-${var.environment}-rg"
+  name     = "cft-${var.product}-${var.env}-rg"
   location = var.location
   tags     = module.ctags.common_tags
 }
 resource "azurerm_storage_account" "stg" {
-  name                     = "cft${var.product}${var.environment}"
+  name                     = "cft${var.product}${var.env}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"
