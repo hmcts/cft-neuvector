@@ -28,7 +28,7 @@ variables:
   keyVaultName: infra-vault-sandbox
   secretsFilter: azure-devops-token
   project: application
-  product: cft-neuvector
+  product: neuvector
   template: vars/input-variables.yaml@cnp-azuredevops-libraries
 
 
