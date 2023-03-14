@@ -130,6 +130,6 @@ stages:
                 serviceConnection: ${{ parameter.service_connection }}
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
-                planCommandOptions: ${{ variables.globalTfCommandOptions }} -var environment=${{ parameter.environment }}
-                applyCommandOptions: ${{ variables.globalTfCommandOptions }} -var environment=${{ parameter.environment }}
-                destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var environment=${{ parameter.environment }}
+                planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                applyCommandOptions: ${{ variables.globalTfCommandOptions }}
+                destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
