@@ -1,3 +1,3 @@
 locals {
-  storage_account_repl_type = var.environment == "stg" || var.environment == "ithc" || var.environment == "prod" ? "ZRS" : "LRS"
+  storage_account_repl_type = var.env == "stg" || var.env == "ithc" || var.env == "prod" ? "ZRS" : "LRS"
 }
