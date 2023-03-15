@@ -1,5 +1,5 @@
 module "azurekeyvault" {
-  source                  = "git::https://github.com/hmcts/cnp-module-key-vault?ref=dxw/security_enabled"
+  source                  = "git::https://github.com/hmcts/cnp-module-key-vault?ref=master"
   name                    = "cft${var.product}-${var.env}"
   product                 = var.product
   env                     = var.env
