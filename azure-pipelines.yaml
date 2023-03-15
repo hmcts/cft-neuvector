@@ -53,37 +53,37 @@ parameters:
         environment: 'stg'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-stg
+        service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
         environment: 'test'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-test
+        service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
         environment: 'sbox'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-sbox
+        service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
         environment: 'demo'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-demo
+        service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
         environment: 'dev'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-dev
+        service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
         environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-ithc
+        service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: dcd-cftapps-prod
+        service_connection: DCD-CFT-Sandbox
 
   - name: location
     displayName: Location
