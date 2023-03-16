@@ -53,22 +53,22 @@ parameters:
         environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-ITHC
+        service_connection: OPS-APPROVAL-GATE-ITHC-ENVS
       - deployment: 'neuvector'
         environment: 'perftest'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-TEST
+        service_connection: OPS-APPROVAL-GATE-TEST-ENVS
       - deployment: 'neuvector'
         environment: 'aat'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-STG
+        service_connection: OPS-APPROVAL-GATE-STG-ENVS
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-PROD
+        service_connection: OPS-APPROVAL-GATE-PROD-ENVS
 
   - name: location
     displayName: Location
