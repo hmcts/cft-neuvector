@@ -50,17 +50,12 @@ parameters:
     type: object
     default:
       - deployment: 'neuvector'
-        environment: 'stg'
+        environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
         service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
-        environment: 'test'
-        dependsOn: 'Precheck'
-        component: cft-neuvector
-        service_connection: DCD-CFT-Sandbox
-      - deployment: 'neuvector'
-        environment: 'sbox'
+        environment: 'preview'
         dependsOn: 'Precheck'
         component: cft-neuvector
         service_connection: DCD-CFT-Sandbox
@@ -70,12 +65,27 @@ parameters:
         component: cft-neuvector
         service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
-        environment: 'dev'
+        environment: 'sbox'
         dependsOn: 'Precheck'
         component: cft-neuvector
         service_connection: DCD-CFT-Sandbox
       - deployment: 'neuvector'
-        environment: 'ithc'
+        environment: 'perftest'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DCD-CFT-Sandbox
+      - deployment: 'neuvector'
+        environment: 'aat'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DCD-CFT-Sandbox
+      - deployment: 'neuvector'
+        environment: 'ptlsbox'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DCD-CFT-Sandbox
+      - deployment: 'neuvector'
+        environment: 'ptl'
         dependsOn: 'Precheck'
         component: cft-neuvector
         service_connection: DCD-CFT-Sandbox
