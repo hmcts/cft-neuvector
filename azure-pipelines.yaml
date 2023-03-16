@@ -20,7 +20,7 @@ resources:
 variables:
   terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
   terraformVersion: 0.14.5
-  globalTfCommandOptions: -parallelism=1 -var activity_name=neuvector
+  globalTfCommandOptions: -parallelism=1
   timeoutInMinutes: 60
   agentPool: 'ubuntu-latest'
   build: $(Build.BuildNumber)
@@ -140,6 +140,6 @@ stages:
                 serviceConnection: ${{ parameter.service_connection }}
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
-                planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
                 applyCommandOptions: ${{ variables.globalTfCommandOptions }}
-                destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
+                destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
