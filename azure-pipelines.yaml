@@ -55,16 +55,6 @@ parameters:
         component: cft-neuvector
         service_connection: DCD-CFTAPPS-ITHC
       - deployment: 'neuvector'
-        environment: 'preview'
-        dependsOn: 'Precheck'
-        component: cft-neuvector
-        service_connection: DCD-CFTAPPS-DEV
-      - deployment: 'neuvector'
-        environment: 'demo'
-        dependsOn: 'Precheck'
-        component: cft-neuvector
-        service_connection: DCD-CFTAPPS-DEMO
-      - deployment: 'neuvector'
         environment: 'sbox'
         dependsOn: 'Precheck'
         component: cft-neuvector
@@ -79,16 +69,6 @@ parameters:
         dependsOn: 'Precheck'
         component: cft-neuvector
         service_connection: DCD-CFTAPPS-STG
-      - deployment: 'neuvector'
-        environment: 'ptlsbox'
-        dependsOn: 'Precheck'
-        component: cft-neuvector
-        service_connection: DTS-CFTSBOX-INTSVC
-      - deployment: 'neuvector'
-        environment: 'ptl'
-        dependsOn: 'Precheck'
-        component: cft-neuvector
-        service_connection: DTS-CFTPTL-INTSVC
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
