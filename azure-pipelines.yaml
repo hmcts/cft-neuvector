@@ -83,17 +83,17 @@ parameters:
         environment: 'ptlsbox'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTSBOX-INTSVC
+        service_connection: DTS-CFTSBOX-INTSVC
       - deployment: 'neuvector'
         environment: 'ptl'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTPTL-INTSVC
+        service_connection: DTS-CFTPTL-INTSVC
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFT-PROD
+        service_connection: DCD-CFTAPPS-PROD
 
   - name: location
     displayName: Location
