@@ -77,9 +77,9 @@ variables:
   product: neuvector
   template: vars/input-variables.yaml@cnp-azuredevops-libraries
 
-  ${{ if eq( parameters['environments.environment'], 'aat') }}:
+  ${{ if eq( parameters['environments.default.environment'], 'aat') }}:
     backendAzureRmResourceGroupName: 'azure-control-stg-rg'
-  ${{ if eq( parameters['environments.environment'], 'perftest') }}:
+  ${{ if eq( parameters['environments.default.environment'], 'perftest') }}:
     backendAzureRmResourceGroupName: 'azure-control-test-rg'
 
 stages:
