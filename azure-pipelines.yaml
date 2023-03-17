@@ -77,9 +77,9 @@ variables:
   product: neuvector
   template: vars/input-variables.yaml@cnp-azuredevops-libraries
 
-  ${{ if eq( parameters['environments.default.environment'], 'aat') }}:
+  ${{ if eq(parameters['environments.environment'], 'aat') }}:
     backendAzureRmResourceGroupName: 'azure-control-stg-rg'
-  ${{ if eq( parameters['environments.default.environment'], 'perftest') }}:
+  ${{ if eq(parameters['environments.environment'], 'perftest') }}:
     backendAzureRmResourceGroupName: 'azure-control-test-rg'
 
 stages:
@@ -119,7 +119,12 @@ stages:
                 serviceConnection: ${{ parameter.service_connection }}
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
-                initCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=$(backendAzureRmResourceGroupName)
-                planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=$(backendAzureRmResourceGroupName)
+                ${{ if eq(parameter.environment, 'aat') }}:
+                  initCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-stg-rg
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-stg-rg
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-stg-rg
+                ${{ if eq(parameter.environment, 'perftest') }}:
+                  initCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-test-rg
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-test-rg
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-test-rg
                 applyCommandOptions: ${{ variables.globalTfCommandOptions }}
-                destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=$(backendAzureRmResourceGroupName)
