@@ -115,11 +115,11 @@ stages:
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
                 ${{ if eq(parameter.environment, 'aat') }}:
-                  initCommandOptions: ${{ variables.globalTfCommandOptions }} #-backend-config=resource_group_name=azure-control-stg-rg
+                  initCommandOptions: -backend-config=resource_group_name=azure-control-stg-rg
                   planCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-stg-rg
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-stg-rg
                 ${{ if eq(parameter.environment, 'perftest') }}:
-                  initCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config=resource_group_name=azure-control-test-rg
+                  initCommandOptions: -backend-config=resource_group_name=azure-control-test-rg
                   planCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-test-rg
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-test-rg
                 applyCommandOptions: ${{ variables.globalTfCommandOptions }}
