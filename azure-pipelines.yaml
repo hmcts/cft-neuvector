@@ -116,10 +116,10 @@ stages:
                 product: ${{ variables.product }}
                 ${{ if eq(parameter.environment, 'aat') }}:
                   initCommandOptions: -backend-config=resource_group_name=azure-control-stg-rg
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-stg-rg
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-stg-rg
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-stg-rg
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-stg-rg
                 ${{ if eq(parameter.environment, 'perftest') }}:
                   initCommandOptions: -backend-config=resource_group_name=azure-control-test-rg
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-test-rg
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var=activity_name=neuvector -backend-config=resource_group_name=azure-control-test-rg
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-test-rg
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-test-rg
                 applyCommandOptions: ${{ variables.globalTfCommandOptions }}
