@@ -17,21 +17,6 @@ resources:
     name: hmcts/cnp-azuredevops-libraries
     endpoint: 'hmcts (1)'
 
-variables:
-  terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
-  terraformVersion: 0.14.5
-  globalTfCommandOptions: -parallelism=1
-  timeoutInMinutes: 60
-  agentPool: 'ubuntu-latest'
-  build: $(Build.BuildNumber)
-  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  keyVaultName: infra-vault-sandbox
-  secretsFilter: azure-devops-token
-  project: application
-  product: neuvector
-  template: vars/input-variables.yaml@cnp-azuredevops-libraries
-
-
 parameters:
   - name: overrideAction
     type: string
@@ -78,6 +63,25 @@ parameters:
       - 'UK South'
       - 'UK West'
 
+variables:
+  terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
+  terraformVersion: 0.14.5
+  globalTfCommandOptions: -parallelism=1
+  timeoutInMinutes: 60
+  agentPool: 'ubuntu-latest'
+  build: $(Build.BuildNumber)
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  keyVaultName: infra-vault-sandbox
+  secretsFilter: azure-devops-token
+  project: application
+  product: neuvector
+  template: vars/input-variables.yaml@cnp-azuredevops-libraries
+
+  ${{ if eq( parameters['environment'], 'aat') }}:
+    backendAzureRmResourceGroupName: 'azure-control-stg-rg'
+  ${{ if eq( parameters['environment'], 'perftest') }}:
+    backendAzureRmResourceGroupName: 'azure-control-test-rg'
+
 stages:
   - stage: Precheck
     jobs:
@@ -115,6 +119,7 @@ stages:
                 serviceConnection: ${{ parameter.service_connection }}
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
-                planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
+                initCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=$(backendAzureRmResourceGroupName)
+                planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=$(backendAzureRmResourceGroupName)
                 applyCommandOptions: ${{ variables.globalTfCommandOptions }}
-                destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
+                destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=$(backendAzureRmResourceGroupName)
