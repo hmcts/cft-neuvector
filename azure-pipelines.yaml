@@ -72,7 +72,7 @@ variables:
   build: $(Build.BuildNumber)
   isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   keyVaultName: infra-vault-sandbox
-  secretsFilter: azure-devops-token
+  secretsFilter: azure-devops-sp-token
   project: application
   product: neuvector
   template: vars/input-variables.yaml@cnp-azuredevops-libraries
