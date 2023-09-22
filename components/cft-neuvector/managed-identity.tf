@@ -1,5 +1,4 @@
 locals {
-
   managed_identity_subscription_id = {
     ithc = {
       subscription = "7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c"
@@ -14,7 +13,6 @@ locals {
       subscription = "8999dec3-0104-4a27-94ee-6588559729d1"
     }
   }
-
 }
 
 provider "azurerm" {
@@ -25,14 +23,11 @@ provider "azurerm" {
 }
 
 resource "azurerm_user_assigned_identity" "managed_identity" {
-
   provider            = azurerm.managed_identity_infra_sub
+  name                = "${var.product}-${var.env}-mi"
   resource_group_name = "managed-identities-${var.env}-rg"
   location            = var.location
-
-  name = "${var.product}-${var.env}-mi"
-
-  tags = module.ctags.common_tags
+  tags                = module.ctags.common_tags
 }
 
 resource "azurerm_key_vault_access_policy" "managed_identity_access_policy" {
