@@ -35,7 +35,7 @@ resource "azurerm_key_vault_access_policy" "managed_identity_access_policy" {
   ]
 }
 
-resource "azurerm_key_vault_access_policy" "managed_identity_access_policy" {
+resource "azurerm_key_vault_access_policy" "cftapps_kv_access_policy" {
   key_vault_id = data.azurerm_key_vault.cftapps_key_vault.id
 
   object_id = azurerm_user_assigned_identity.managed_identity.principal_id
