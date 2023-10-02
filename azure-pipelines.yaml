@@ -35,6 +35,11 @@ parameters:
     type: object
     default:
       - deployment: 'neuvector'
+        environment: 'sbox'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DCD-CFTAPPS-SBOX
+      - deployment: 'neuvector'
         environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
