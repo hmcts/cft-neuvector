@@ -1,11 +1,6 @@
 data "azurerm_client_config" "current" {
 }
 
-data "azurerm_user_assigned_identity" "managed_identity" {
-  name                = "${var.product}-${var.env}-mi"
-  resource_group_name = "managed-identities-${var.env}-rg"
-}
-
 data "azurerm_key_vault" "cftapps_key_vault" {
   name                = local.cftapps_keyvault["${var.env}"].name
   resource_group_name = local.cftapps_keyvault["${var.env}"].rg
