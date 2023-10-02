@@ -122,7 +122,7 @@ stages:
                 ${{ if eq(parameter.environment, 'aat') }}:
                   initCommandOptions: -backend-config=resource_group_name=azure-control-stg-rg
                   planCommandOptions: ${{ variables.globalTfCommandOptions }}
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions } -backend-config resource_group_name=azure-control-stg-rg
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-stg-rg
                 ${{ if eq(parameter.environment, 'perftest') }}:
                   initCommandOptions: -backend-config=resource_group_name=azure-control-test-rg
                   planCommandOptions: ${{ variables.globalTfCommandOptions }}
