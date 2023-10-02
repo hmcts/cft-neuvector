@@ -7,7 +7,7 @@ module "azurekeyvault" {
   product_group_name         = "DTS Platform Operations"
   common_tags                = module.ctags.common_tags
   object_id                  = data.azurerm_client_config.current.object_id
-  managed_identity_object_id = azurerm_user_assigned_identity.managed_identity.principal_id
+  managed_identity_object_id = data.azurerm_user_assigned_identity.managed_identity.principal_id
 }
 
 resource "azurerm_key_vault_access_policy" "sc_access_policy" {
