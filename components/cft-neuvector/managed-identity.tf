@@ -5,7 +5,7 @@ provider "azurerm" {
   alias = "managed_identity_infra_sub"
 }
 
-local {
+locals {
   env = var.env == "sbox" ? "sandbox" : var.env
 }
 
