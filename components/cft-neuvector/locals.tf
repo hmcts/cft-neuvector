@@ -2,6 +2,9 @@ locals {
   storage_account_repl_type = var.env == "stg" || var.env == "ithc" || var.env == "prod" ? "ZRS" : "LRS"
 
   managed_identity_subscription_id = {
+    sbox = {
+      subscription = "bf308a5c-0624-4334-8ff8-8dca9fd43783"
+    }
     ithc = {
       subscription = "7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c"
     }
@@ -16,6 +19,10 @@ locals {
     }
   }
   cftapps_keyvault = {
+    sbox = {
+      name = "cftapps-sbox"
+      rg   = "core-infra-sbox-rg"
+    }
     ithc = {
       name = "cftapps-ithc"
       rg   = "core-infra-ithc-rg"

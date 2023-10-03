@@ -5,10 +5,14 @@ provider "azurerm" {
   alias = "managed_identity_infra_sub"
 }
 
+locals {
+  env = var.env == "sbox" ? "sandbox" : var.env
+}
+
 resource "azurerm_user_assigned_identity" "managed_identity" {
   provider            = azurerm.managed_identity_infra_sub
-  name                = "${var.product}-${var.env}-mi"
-  resource_group_name = "managed-identities-${var.env}-rg"
+  name                = "${var.product}-${local.env}-mi"
+  resource_group_name = "managed-identities-${local.env}-rg"
   location            = var.location
   tags                = module.ctags.common_tags
 }

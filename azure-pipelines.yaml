@@ -35,6 +35,11 @@ parameters:
     type: object
     default:
       - deployment: 'neuvector'
+        environment: 'sbox'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DCD-CFTAPPS-SBOX
+      - deployment: 'neuvector'
         environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
@@ -116,17 +121,17 @@ stages:
                 product: ${{ variables.product }}
                 ${{ if eq(parameter.environment, 'aat') }}:
                   initCommandOptions: -backend-config=resource_group_name=azure-control-stg-rg
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-stg-rg
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-stg-rg
                 ${{ if eq(parameter.environment, 'perftest') }}:
                   initCommandOptions: -backend-config=resource_group_name=azure-control-test-rg
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector -backend-config resource_group_name=azure-control-test-rg
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-test-rg
                 ${{ if eq(parameter.environment, 'ithc') }}:
                   initCommandOptions:
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
                 ${{ if eq(parameter.environment, 'prod') }}:
                   initCommandOptions:
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
-                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -var activity_name=neuvector
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
