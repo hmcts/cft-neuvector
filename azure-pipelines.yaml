@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 resources:
   repositories:
   - repository: cnp-azuredevops-libraries
@@ -49,6 +44,11 @@ parameters:
         component: cft-neuvector
         service_connection: DCD-CFTAPPS-STG
       - deployment: 'neuvector'
+        environment: 'ptl'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DTS-CFTPTL-INTSVC
+      - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
@@ -58,9 +58,6 @@ parameters:
     displayName: Location
     type: string
     default: 'UK South'
-    values:
-      - 'UK South'
-      - 'UK West'
 
 variables:
   terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
@@ -124,6 +121,10 @@ stages:
                 ${{ if eq(parameter.environment, 'ithc') }}:
                   initCommandOptions:
                   planCommandOptions: ${{ variables.globalTfCommandOptions }}
+                  destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
+                ${{ if eq(parameter.environment, 'ptl') }}:
+                  initCommandOptions:
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -target azurerm_user_assigned_identity.managed_identity
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
                 ${{ if eq(parameter.environment, 'prod') }}:
                   initCommandOptions:
