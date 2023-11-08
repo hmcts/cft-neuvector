@@ -6,7 +6,7 @@ provider "azurerm" {
 }
 
 locals {
-  env = var.env == "sbox" ? "sandbox" : var.env || var.env == "ptl" ? "cftptl-intsvc" : var.env
+  env = var.env == "sbox" ? "sandbox" : var.env == "ptl" ? "cftptl-intsvc" : var.env
 }
 
 resource "azurerm_user_assigned_identity" "managed_identity" {
