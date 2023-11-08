@@ -49,6 +49,11 @@ parameters:
         component: cft-neuvector
         service_connection: DCD-CFTAPPS-STG
       - deployment: 'neuvector'
+        environment: 'ptl'
+        dependsOn: 'Precheck'
+        component: cft-neuvector
+        service_connection: DTS-CFTPTL-INTSVC
+      - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
@@ -58,9 +63,6 @@ parameters:
     displayName: Location
     type: string
     default: 'UK South'
-    values:
-      - 'UK South'
-      - 'UK West'
 
 variables:
   terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
