@@ -124,7 +124,7 @@ stages:
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
                 ${{ if eq(parameter.environment, 'ptl') }}:
                   initCommandOptions:
-                  planCommandOptions: ${{ variables.globalTfCommandOptions }} -target azurerm_user_assigned_identity.managed_identity
+                  planCommandOptions: ${{ variables.globalTfCommandOptions }}
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }}
                 ${{ if eq(parameter.environment, 'prod') }}:
                   initCommandOptions:

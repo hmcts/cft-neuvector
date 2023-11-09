@@ -7,4 +7,4 @@ This repository is used to maintain the infrastructure components needed for Neu
 * Storage Account
 * Storage Account Fileshares
 
-Corresponding pipline in Platform Operations ADO is: hmcts.cft-neuvector
+Corresponding pipeline in Platform Operations ADO is: hmcts.cft-neuvector
