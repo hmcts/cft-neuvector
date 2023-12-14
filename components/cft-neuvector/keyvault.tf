@@ -10,32 +10,6 @@ module "azurekeyvault" {
   managed_identity_object_id = azurerm_user_assigned_identity.managed_identity.principal_id
 }
 
-moved {
-  from = module.azurekeyvault.managed_identity_access_policy
-  to   = azurerm_key_vault_access_policy.managed_identity_access_policy
-}
-
-resource "azurerm_key_vault_access_policy" "managed_identity_access_policy" {
-  key_vault_id = module.azurekeyvault.key_vault_id
-  object_id    = azurerm_user_assigned_identity.managed_identity.principal_id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-
-  key_permissions = [
-    "Get",
-    "List",
-  ]
-
-  certificate_permissions = [
-    "Get",
-    "List",
-  ]
-
-  secret_permissions = [
-    "Get",
-    "List",
-  ]
-}
-
 resource "azurerm_key_vault_access_policy" "sc_access_policy" {
 
   count = var.env == "prod" ? 1 : 0
