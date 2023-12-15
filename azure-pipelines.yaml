@@ -66,7 +66,6 @@ variables:
   timeoutInMinutes: 60
   agentPool: 'ubuntu-latest'
   build: $(Build.BuildNumber)
-  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   keyVaultName: infra-vault-sandbox
   secretsFilter: azure-devops-sp-token
   project: application
