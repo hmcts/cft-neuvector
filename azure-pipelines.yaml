@@ -60,18 +60,27 @@ parameters:
     default: 'UK South'
 
 variables:
-  terraformInitSubscription: 04d27a32-7a07-48b3-95b8-3c8691e1a263
-  terraformVersion: 0.14.5
-  globalTfCommandOptions: -parallelism=1
-  timeoutInMinutes: 60
-  agentPool: 'ubuntu-latest'
-  build: $(Build.BuildNumber)
-  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  keyVaultName: infra-vault-sandbox
-  secretsFilter: azure-devops-sp-token
-  project: application
-  product: neuvector
-  template: vars/input-variables.yaml@cnp-azuredevops-libraries
+  - name: terraformInitSubscription
+    value: 04d27a32-7a07-48b3-95b8-3c8691e1a263
+  - name: terraformVersion
+    value: 0.14.5
+  - name: globalTfCommandOptions
+    value: -parallelism=1
+  - name: timeoutInMinutes
+    value: '60'
+  - name: agentPool
+    value: 'ubuntu-latest'
+  - name: build
+    value: $(Build.BuildNumber)
+  - name: keyVaultName
+    value: infra-vault-sandbox
+  - name: secretsFilter
+    value: azure-devops-sp-token
+  - name: project
+    value: application
+  - name: product
+    value: neuvector
+  - template: vars/input-variables.yaml@cnp-azuredevops-libraries
 
 stages:
   - stage: Precheck
