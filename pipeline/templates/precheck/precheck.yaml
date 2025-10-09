@@ -4,7 +4,7 @@ jobs:
     pool:   
       vmImage: ${{ parameters.agentPool }}
     steps: 
-    - task: TerraformInstaller@0
+    - task: TerraformInstaller@2
       displayName: Terraform install
       inputs: 
         terraformVersion: ${{ parameters.terraformVersion }}
