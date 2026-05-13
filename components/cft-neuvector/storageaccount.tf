@@ -32,7 +32,7 @@ resource "azurerm_storage_share" "share" {
 resource "azurerm_storage_share" "share_refresh" {
   count = 2
 
-  name                 = "neuvector-refresh-data-${format("%02s", count.index)}"
+  name                 = "neuvector-data-refresh-${format("%02s", count.index)}"
   storage_account_name = azurerm_storage_account.stg.name
   quota                = 1
 }
