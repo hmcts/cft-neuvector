@@ -119,11 +119,14 @@ stages:
                 serviceConnection: ${{ parameter.service_connection }}
                 terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                 product: ${{ variables.product }}
+                location: ${{ parameters.location }}
                 ${{ if eq(parameter.environment, 'aat') }}:
+                  backendResourceGroupName: azure-control-stg-rg
                   initCommandOptions: -backend-config=resource_group_name=azure-control-stg-rg
                   planCommandOptions: ${{ variables.globalTfCommandOptions }}
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-stg-rg
                 ${{ if eq(parameter.environment, 'perftest') }}:
+                  backendResourceGroupName: azure-control-test-rg
                   initCommandOptions: -backend-config=resource_group_name=azure-control-test-rg
                   planCommandOptions: ${{ variables.globalTfCommandOptions }}
                   destroyCommandOptions: ${{ variables.globalTfCommandOptions }} -backend-config resource_group_name=azure-control-test-rg

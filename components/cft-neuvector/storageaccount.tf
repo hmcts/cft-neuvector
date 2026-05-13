@@ -29,6 +29,14 @@ resource "azurerm_storage_share" "share" {
   quota                = 1
 }
 
+resource "azurerm_storage_share" "share_refresh" {
+  count = 2
+
+  name                 = "neuvector-data-refresh-${format("%02s", count.index)}"
+  storage_account_name = azurerm_storage_account.stg.name
+  quota                = 1
+}
+
 
 resource "azurerm_key_vault_secret" "kvs" {
   name         = "storage-account-key"
