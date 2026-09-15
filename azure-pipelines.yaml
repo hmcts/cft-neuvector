@@ -73,7 +73,7 @@ variables:
   - name: build
     value: $(Build.BuildNumber)
   - name: keyVaultName
-    value: infra-vault-sandbox
+    value: infra-vault-nonprod
   - name: secretsFilter
     value: azure-devops-sp-token
   - name: project
