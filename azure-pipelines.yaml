@@ -17,7 +17,7 @@ parameters:
 
   - name: kvConnectedServiceName
     type: string
-    default: DCD-CFT-Sandbox
+    default: azurerm-sandbox
 
   - name: environments
     displayName: Environment to run
