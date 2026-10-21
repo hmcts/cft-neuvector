@@ -1,5 +1,5 @@
 module "azurekeyvault" {
-  source                     = "git::https://github.com/hmcts/cnp-module-key-vault?ref=DTSPO-31965/remove-jenkins-ptl-access"
+  source                     = "git::https://github.com/hmcts/cnp-module-key-vault?ref=platops/DTSPO-35095DisableAATDiagLogs"
   name                       = "cft${var.product}-${var.env}"
   product                    = var.product
   env                        = var.env
