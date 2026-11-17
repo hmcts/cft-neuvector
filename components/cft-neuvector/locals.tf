@@ -47,4 +47,5 @@ locals {
       rg   = "core-infra-prod-rg"
     }
   }
+  env = var.env == "ptl" ? "cftptl-intsvc" : var.env == "ptlsbox" ? "cftsbox-intsvc" : var.env == "aat" ? "stg" : var.env == "perftest" ? "test" : var.env
 }

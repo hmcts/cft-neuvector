@@ -12,6 +12,6 @@ data "azuread_group" "platops_sc" {
 }
 
 data "azurerm_user_assigned_identity" "cftapps_uami" {
-  name                = var.env != "ptl" ? "DCD-CFTAPPS-${var.env}-WIF-mi" : "DTS-CFTPTL-INTSVC-WIF-mi"
-  resource_group_name = "azure-devops-service-connections-${var.env}-rg"
+  name                = "DCD-CFTAPPS-${local.env}-WIF-mi"
+  resource_group_name = "azure-devops-service-connections-${local.env}-rg"
 }
