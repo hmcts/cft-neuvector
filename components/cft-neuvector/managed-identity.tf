@@ -52,5 +52,5 @@ resource "azurerm_key_vault_access_policy" "cftapps_kv_access_policy" {
 
 moved {
   from = azurerm_key_vault_access_policy.wif_managed_identity_access_policy
-  to   = azurerm_key_vault_access_policy.cftapps_kv_access_policy
+  to   = module.azurekeyvault.azurerm_key_vault_access_policy.ado[0]
 }
