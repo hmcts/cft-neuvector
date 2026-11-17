@@ -61,7 +61,7 @@ resource "azurerm_key_vault_access_policy" "cftapps_kv_access_policy" {
   ]
 }
 
-resource "azurerm_key_vault_access_policy" "managed_identity_access_policy" {
+resource "azurerm_key_vault_access_policy" "wif_managed_identity_access_policy" {
   key_vault_id = module.azurekeyvault.key_vault_id
 
   object_id = data.azurerm_user_assigned_identity.cftapps_uami.principal_id
