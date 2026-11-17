@@ -16,3 +16,8 @@ data "azurerm_user_assigned_identity" "cftapps_uami" {
   name                = var.env == "ptl" ? "DTS-${local.uami_env}-WIF-mi" : "DCD-CFTAPPS-${local.uami_env}-WIF-MI"
   resource_group_name = var.env == "prod" ? "managed-identities-${local.uami_env}-rg" : var.env == "ptl" ? "azure-devops-service-connections-${var.env}-rg" : "azure-devops-service-connections-${local.uami_env}-rg"
 }
+
+data "azurerm_user_assigned_identity" "nonprod_cftapps_uami" {
+  name                = "DCD-CFTAPPS-${local.uami_env}-WIF-MI"
+  resource_group_name = "azure-devops-service-connections-${local.uami_env}-rg"
+}
