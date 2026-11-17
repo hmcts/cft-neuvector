@@ -1,9 +1,3 @@
-provider "azurerm" {
-  subscription_id            = local.managed_identity_subscription_id["${var.env}"].subscription
-  skip_provider_registration = "true"
-  features {}
-  alias = "managed_identity_infra_sub"
-}
 resource "azurerm_user_assigned_identity" "managed_identity" {
   provider            = azurerm.managed_identity_infra_sub
   name                = "${var.product}-${local.env}-mi"
