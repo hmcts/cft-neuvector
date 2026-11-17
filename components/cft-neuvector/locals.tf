@@ -47,4 +47,27 @@ locals {
       rg   = "core-infra-prod-rg"
     }
   }
+  uami_env = var.env == "ptl" ? "cftptl-intsvc" : var.env == "ptlsbox" ? "cftsbox-intsvc" : var.env == "aat" ? "stg" : var.env == "perftest" ? "test" : var.env
+  env      = var.env == "sbox" ? "sandbox" : var.env == "ptl" ? "cftptl-intsvc" : var.env
+
+  uami_subscription_id = {
+    sbox = {
+      subscription = "b72ab7b7-723f-4b18-b6f6-03b0f2c6a1bb"
+    }
+    ithc = {
+      subscription = "62864d44-5da9-4ae9-89e7-0cf33942fa09"
+    }
+    perftest = {
+      subscription = "8a07fdcd-6abd-48b3-ad88-ff737a4b9e3c"
+    }
+    aat = {
+      subscription = "96c274ce-846d-4e48-89a7-d528432298a7"
+    }
+    ptl = {
+      subscription = "1baf5470-1c3e-40d3-a6f7-74bfbce4b348"
+    }
+    prod = {
+      subscription = "8999dec3-0104-4a27-94ee-6588559729d1"
+    }
+  }
 }
