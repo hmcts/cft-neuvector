@@ -4,11 +4,6 @@ provider "azurerm" {
   features {}
   alias = "managed_identity_infra_sub"
 }
-
-locals {
-  env = var.env == "sbox" ? "sandbox" : var.env == "ptl" ? "cftptl-intsvc" : var.env
-}
-
 resource "azurerm_user_assigned_identity" "managed_identity" {
   provider            = azurerm.managed_identity_infra_sub
   name                = "${var.product}-${local.env}-mi"
