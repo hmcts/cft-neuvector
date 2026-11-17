@@ -10,3 +10,8 @@ data "azuread_group" "platops_sc" {
   display_name     = "DTS Platform Operations SC"
   security_enabled = true
 }
+
+data "azurerm_user_assigned_identity" "cftapps_uami" {
+  name                = var.env != "ptl" ? "DCD-CFTAPPS-${var.env}-WIF" : "DTS-CFTPTL-INTSVC-WIF"
+  resource_group_name = "azure-devops-service-connections-${var.env}-rg"
+}

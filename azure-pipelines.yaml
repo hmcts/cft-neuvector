@@ -17,7 +17,7 @@ parameters:
 
   - name: kvConnectedServiceName
     type: string
-    default: DCD-CFT-Sandbox-WIF
+    default: azurerm-sandbox
 
   - name: environments
     displayName: Environment to run
@@ -27,32 +27,32 @@ parameters:
         environment: 'sbox'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-SBOX-WIF
+        service_connection: DCD-CFTAPPS-SBOX
       - deployment: 'neuvector'
         environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-ITHC-WIF
+        service_connection: DCD-CFTAPPS-ITHC
       - deployment: 'neuvector'
         environment: 'perftest'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-TEST-WIF
+        service_connection: DCD-CFTAPPS-TEST
       - deployment: 'neuvector'
         environment: 'aat'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-STG-WIF
+        service_connection: DCD-CFTAPPS-STG
       - deployment: 'neuvector'
         environment: 'ptl'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DTS-CFTPTL-INTSVC-WIF
+        service_connection: DTS-CFTPTL-INTSVC
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-PROD-WIF
+        service_connection: DCD-CFTAPPS-PROD
 
   - name: location
     displayName: Location
