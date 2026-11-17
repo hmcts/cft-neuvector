@@ -19,3 +19,10 @@ provider "azurerm" {
   skip_provider_registration = "true"
   features {}
 }
+
+provider "azurerm" {
+  alias                      = "managed_identity_infra_sub"
+  subscription_id            = local.managed_identity_subscription_id["${var.env}"].subscription
+  skip_provider_registration = "true"
+  features {}
+}
