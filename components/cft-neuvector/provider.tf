@@ -26,10 +26,3 @@ provider "azurerm" {
   skip_provider_registration = "true"
   features {}
 }
-
-provider "azurerm" {
-  alias                      = "uami_sub"
-  subscription_id            = local.uami_subscription_id["${var.env}"].subscription
-  skip_provider_registration = "true"
-  features {}
-}
