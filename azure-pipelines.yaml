@@ -27,32 +27,32 @@ parameters:
         environment: 'sbox'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-SBOX
+        service_connection: DCD-CFTAPPS-SBOX-WIF
       - deployment: 'neuvector'
         environment: 'ithc'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-ITHC
+        service_connection: DCD-CFTAPPS-ITHC-WIF
       - deployment: 'neuvector'
         environment: 'perftest'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-TEST
+        service_connection: DCD-CFTAPPS-TEST-WIF
       - deployment: 'neuvector'
         environment: 'aat'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-STG
+        service_connection: DCD-CFTAPPS-STG-WIF
       - deployment: 'neuvector'
         environment: 'ptl'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DTS-CFTPTL-INTSVC
+        service_connection: DTS-CFTPTL-INTSVC-WIF
       - deployment: 'neuvector'
         environment: 'prod'
         dependsOn: 'Precheck'
         component: cft-neuvector
-        service_connection: DCD-CFTAPPS-PROD
+        service_connection: DCD-CFTAPPS-PROD-WIF
 
   - name: location
     displayName: Location
