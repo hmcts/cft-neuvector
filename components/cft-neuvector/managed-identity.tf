@@ -50,24 +50,3 @@ resource "azurerm_key_vault_access_policy" "cftapps_kv_access_policy" {
   ]
 }
 
-resource "azurerm_key_vault_access_policy" "wif_managed_identity_access_policy" {
-  key_vault_id = module.azurekeyvault.key_vault_id
-
-  object_id = data.azurerm_user_assigned_identity.cftapps_uami.principal_id
-  tenant_id = data.azurerm_client_config.current.tenant_id
-
-  key_permissions = [
-    "Get",
-    "List",
-  ]
-
-  certificate_permissions = [
-    "Get",
-    "List",
-  ]
-
-  secret_permissions = [
-    "Get",
-    "List",
-  ]
-}
