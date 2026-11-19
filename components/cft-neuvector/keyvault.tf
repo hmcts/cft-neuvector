@@ -66,5 +66,5 @@ resource "azurerm_key_vault_access_policy" "sc_access_policy" {
 
 import {
   to = module.azurekeyvault.azurerm_key_vault_access_policy.ado[0]
-  id = data.azurerm_client_config.current.object_id
+  id = "${module.azurekeyvault.key_vault_id}/objectId/${data.azurerm_client_config.current.object_id}"
 }
