@@ -55,4 +55,5 @@ removed {
 
   lifecycle {
     destroy = false
+  }
 }
