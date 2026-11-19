@@ -50,3 +50,9 @@ resource "azurerm_key_vault_access_policy" "cftapps_kv_access_policy" {
   ]
 }
 
+removed {
+  from = azurerm_key_vault_access_policy.wif_managed_identity_access_policy
+
+  lifecycle {
+    destroy = false
+}
